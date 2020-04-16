@@ -2,11 +2,12 @@ const mysql = require('mysql2/promise');
 const _ = require('lodash');
 
 async function doWork() {
-  const connection = await mysql.createConnection({
+  const connection = await mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'imdb2',
+    connectionLimit: 50,
   });
 
   await connection.execute(
