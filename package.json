@@ -1,0 +1,20 @@
+{
+  "name": "imdb-normalizer",
+  "version": "1.0.0",
+  "author": "Victor Wolmeister",
+  "scripts": {
+    "start": "node --max-old-space-size=8192 index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolmeister/imdb-normalizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wolmeister/imdb-normalizer/issues"
+  },
+  "homepage": "https://github.com/wolmeister/imdb-normalizer#readme",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "mysql2": "^2.1.0"
+  }
+}
