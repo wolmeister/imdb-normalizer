@@ -17,6 +17,9 @@ async function doWork() {
     'CREATE TABLE IF NOT EXISTS title_writers ( tconst INT NOT NULL, nconst INT NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
   );
 
+  await connection.execute('DELETE FROM title_directors');
+  await connection.execute('DELETE FROM title_writers');
+
   let [results] = await connection.query('select * from title_crew');
   let directors = [];
   let writers = [];
@@ -48,6 +51,7 @@ async function doWork() {
   await connection.execute(
     'CREATE TABLE IF NOT EXISTS title_genres ( tconst INT NOT NULL, genre VARCHAR(200) NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
   );
+  await connection.execute('DELETE FROM title_genres');
 
   [results] = await connection.query('select tconst, genres from title_basics');
   let genres = [];
