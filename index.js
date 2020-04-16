@@ -17,8 +17,8 @@ async function doWork() {
     'CREATE TABLE IF NOT EXISTS title_writers ( tconst INT NOT NULL, nconst INT NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
   );
 
-  // await connection.execute('DELETE FROM title_directors');
-  // await connection.execute('DELETE FROM title_writers');
+  await connection.execute('DELETE FROM title_directors');
+  await connection.execute('DELETE FROM title_writers');
 
   let [results] = await connection.query('select * from title_crew');
   let directors = [];
@@ -38,14 +38,14 @@ async function doWork() {
   });
 
   console.log('directors.length', directors.length);
-  // _.chunk(directors, 20000).forEach(values => {
-  //   connection.execute('INSERT INTO title_directors VALUES' + values.join(','));
-  // });
+  _.chunk(directors, 20000).forEach(values => {
+    connection.execute('INSERT INTO title_directors VALUES' + values.join(','));
+  });
 
   console.log('writers.length', writers.length);
-  // _.chunk(writers, 20000).forEach(values => {
-  //   connection.execute('INSERT INTO title_writers VALUES' + values.join(','));
-  // });
+  _.chunk(writers, 20000).forEach(values => {
+    connection.execute('INSERT INTO title_writers VALUES' + values.join(','));
+  });
 
   directors = [];
   writers = [];
@@ -54,7 +54,7 @@ async function doWork() {
   await connection.execute(
     'CREATE TABLE IF NOT EXISTS title_genres ( tconst INT NOT NULL, genre VARCHAR(200) NOT NULL ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
   );
-  // await connection.execute('DELETE FROM title_genres');
+  await connection.execute('DELETE FROM title_genres');
 
   [results] = await connection.query('select tconst, genres from title_basics');
   let genres = [];
@@ -68,9 +68,9 @@ async function doWork() {
   });
 
   console.log('genres.length', genres.length);
-  // _.chunk(genres, 20000).forEach(values => {
-  //   connection.execute('INSERT INTO title_genres VALUES' + values.join(','));
-  // });
+  _.chunk(genres, 20000).forEach(values => {
+    connection.execute('INSERT INTO title_genres VALUES' + values.join(','));
+  });
 
   genres = [];
 
